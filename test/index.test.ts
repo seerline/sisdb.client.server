@@ -1,8 +1,8 @@
-import mongoose from 'mongoose'
 
-// ensure close mongoose
+before(() => {
+  // do something init
+})
+
 after(() => {
-  mongoose.models = {}
-  // mongoose.modelSchemas = {}
-  mongoose.connection.close()
+  // do something clear
 })

@@ -27,19 +27,20 @@
   "dependencies": {
     "bcryptjs": "^2.4.3",
     "boom": "^7.3.0",
+    "debug": "^4.1.0",
     "ioredis": "^4.2.0",
     "jsonwebtoken": "^8.4.0",
     "kcors": "^2.2.2",
     "koa": "^2.6.2",
     "koa-bodyparser": "^4.2.1",
     "koa-logger": "^3.2.0",
-    "koa-router": "^7.4.0",
-    "mongoose": "^5.3.14"
+    "koa-router": "^7.4.0"
   },
   "devDependencies": {
     "@commitlint/cli": "^7.2.1",
     "@types/bcryptjs": "^2.4.2",
     "@types/boom": "^7.2.1",
+    "@types/debug": "^0.0.31",
     "@types/ioredis": "^4.0.4",
     "@types/jsonwebtoken": "^8.3.0",
     "@types/kcors": "^2.2.3",
@@ -47,7 +48,6 @@
     "@types/koa-logger": "^3.1.1",
     "@types/koa-router": "^7.0.35",
     "@types/mocha": "^5.2.5",
-    "@types/mongoose": "^5.3.2",
     "@types/supertest": "^2.0.6",
     "commitizen": "^3.0.5",
     "cz-conventional-changelog": "^2.1.0",
