@@ -2,7 +2,7 @@ import assert = require('assert')
 import { describe, it } from 'mocha'
 import supertest from 'supertest'
 import app from '../../src/app'
-import { redisOptions, buildConnectionId } from '../fixtures/redisOptions'
+import { buildConnectionId, redisOptions } from '../fixtures/redisOptions'
 const request = supertest.agent(app.listen())
 
 describe('should Post /login', () => {
@@ -29,7 +29,7 @@ describe('should Post /login', () => {
       .expect(200)
     assert.deepEqual(body, {
       ok: true,
-      message: 'Logged'
+      message: 'Logged',
     })
 
     await request.post('/login')

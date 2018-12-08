@@ -10,48 +10,45 @@ redisRouter
   .get('/server/info', redisController.getServersInfo)
   .get('/connection/:connectionId', redisController.isConnected)
   // .get('/key/:connectionId/:key(*)', getKeyDetails)
+  // .get('/key/:connectionId/:key(*)', redisController.getKeyDetails)
+  // .post('/key/:connectionId/:key(*)', redisController.postKey)
+  // .post('/keys/:connectionId/:key(*)', redisController.postKeys)
+  // // modify entries - newer api with post/put/del and additional POST equivalents
+  // // and unified form params
 
-// routerV2.get('/key/:connectionId/:key(*)', getKeyDetails);
-// routerV2.post('/key/:connectionId/:key(*)', postKey);
-// routerV2.post('/keys/:connectionId/:key(*)', postKeys);
-// // modify entries - newer api with post/put/del and additional POST equivalents
-// // and unified form params
+  // .post('/list/value', redisController.postAddListValue)
+  // .put('/list/value', redisController.postEditListValue)
+  // .delete('/list/value', redisController.postDeleteListValue)
+  // .post('/list/value/add', redisController.postAddListValue)
+  // .post('/list/value/edit', redisController.postEditListValue)
+  // .post('/list/value/delete', redisController.postDeleteListValue)
 
-// routerV2.post('/list/value', postAddListValue);
-// routerV2.put('/list/value', postEditListValue);
-// routerV2.delete('/list/value', postDeleteListValue);
-// routerV2.post('/list/value/add', postAddListValue);
-// routerV2.post('/list/value/edit', postEditListValue);
-// routerV2.post('/list/value/delete', postDeleteListValue);
+  // .post('/set/member', redisController.postAddSetMember)
+  // .put('/set/member', redisController.postEditSetMember)
+  // .delete('/set/member', redisController.postDeleteSetMember)
+  // .post('/set/member/add', redisController.postAddSetMember)
+  // .post('/set/member/edit', redisController.postEditSetMember)
+  // .post('/set/member/delete', redisController.postDeleteSetMember)
 
-// routerV2.post('/set/member', postAddSetMember);
-// routerV2.put('/set/member', postEditSetMember);
-// routerV2.delete('/set/member', postDeleteSetMember);
-// routerV2.post('/set/member/add', postAddSetMember);
-// routerV2.post('/set/member/edit', postEditSetMember);
-// routerV2.post('/set/member/delete', postDeleteSetMember);
+  // .post('/zset/member', redisController.postAddZSetMember)
+  // .put('/zset/member', redisController.postEditZSetMember)
+  // .delete('/zset/member', redisController.postDeleteZSetMember)
+  // .post('/zset/member/add', redisController.postAddZSetMember)
+  // .post('/zset/member/edit', redisController.postEditZSetMember)
+  // .post('/zset/member/delete', redisController.postDeleteZSetMember)
 
-// routerV2.post('/zset/member', postAddZSetMember);
-// routerV2.put('/zset/member', postEditZSetMember);
-// routerV2.delete('/zset/member', postDeleteZSetMember);
-// routerV2.post('/zset/member/add', postAddZSetMember);
-// routerV2.post('/zset/member/edit', postEditZSetMember);
-// routerV2.post('/zset/member/delete', postDeleteZSetMember);
+  // .post('/hash/field', redisController.postAddHashField)
+  // .put('/hash/field', redisController.postEditHashField)
+  // .delete('/hash/field', redisController.postDeleteHashField)
+  // .post('/hash/field/add', redisController.postAddHashField)
+  // .post('/hash/field/edit', redisController.postEditHashField)
+  // .post('/hash/field/delete', redisController.postDeleteHashField)
 
-// routerV2.post('/hash/field', postAddHashField);
-// routerV2.put('/hash/field', postEditHashField);
-// routerV2.delete('/hash/field', postDeleteHashField);
-// routerV2.post('/hash/field/add', postAddHashField);
-// routerV2.post('/hash/field/edit', postEditHashField);
-// routerV2.post('/hash/field/delete', postDeleteHashField);
-
-// // helpers and stuff same as v1 api
-// routerV2.post('/encodeString/:stringValue', encodeString);
-// routerV2.get('/keystree/:connectionId/:keyPrefix(*)', getKeysTree);
-// routerV2.get('/keystree/:connectionId', getKeysTree);
-// routerV2.get('/keys/:connectionId/:keyPrefix(*)', getKeys);
-// routerV2.post('/exec/:connectionId', postExec);
-
-// routerV2.param('connectionId', getConnection);
+  // // helpers and stuff same as v1 api
+  // .post('/encodeString/:stringValue', redisController.encodeString)
+  // .get('/keystree/:connectionId/:keyPrefix(*)', redisController.getKeysTree)
+  // .get('/keystree/:connectionId', redisController.getKeysTree)
+  // .get('/keys/:connectionId/:keyPrefix(*)', redisController.getKeys)
+  .post('/exec/:connectionId', redisController.postExec)
 
 export default redisRouter

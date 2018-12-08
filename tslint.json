@@ -45,7 +45,8 @@
       "max-line-length": [
         true,
         200
-      ]
+      ],
+      "no-implicit-dependencies": [true, "dev"]
     }
   }
   

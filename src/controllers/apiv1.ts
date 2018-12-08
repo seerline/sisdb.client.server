@@ -1,6 +1,8 @@
+import Boom from 'boom'
 import inflection from 'inflection'
 import { RedisOptions } from 'ioredis'
 import { Context, Middleware } from 'koa'
+import * as myutil from '../utils'
 import { RedisCliet } from '../utils/redis'
 
 export const getTest: Middleware = async (ctx: Context) => {
@@ -59,4 +61,20 @@ export const isConnected: Middleware = async (ctx: Context) => {
     connected = !!data
   }
   ctx.body = connected
+}
+
+export const postExec: Middleware = async (ctx: Context) => {
+  const cmd = ctx.request.body.cmd
+  const redisClient = ctx.redisClient
+  const parts = myutil.split(cmd)
+  parts[0] = parts[0].toLowerCase()
+  const commandName = parts[0].toLowerCase()
+  if (!(commandName in redisClient)) {
+    throw Boom.badRequest('ERROR: Invalid Command')
+  }
+  const args = parts.slice(1)
+  const result = await (redisClient as any)[commandName].apply(redisClient, args)
+  ctx.body = {
+    result: JSON.stringify(result),
+  }
 }
