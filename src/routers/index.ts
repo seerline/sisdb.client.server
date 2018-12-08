@@ -1,8 +1,8 @@
 import { Context } from 'koa'
 import Router from 'koa-router'
-import { postLogin, postLogout } from '../controllers/home'
 import { redisConnections } from '../utils/redis'
 import api from './apiv1'
+import homeRouter from './home'
 import toolRouter from './tools'
 
 const getConnection = async (connectionId: string, ctx: Context, next: () => Promise<any>) => {
@@ -25,13 +25,8 @@ const router = new Router()
 
 router
   .param('connectionId', getConnection)
+  .use('/', homeRouter.routes(), homeRouter.allowedMethods())
   .use('/api', api.routes(), api.allowedMethods())
   .use('/tools', toolRouter.routes(), toolRouter.allowedMethods())
-
-// router.get('/connections', getConnections)
-router.post('/login', postLogin)
-// router.get('/config', getConfig);
-// router.post('/config', postConfig);
-router.post('/logout/:connectionId', postLogout)
 
 export default router

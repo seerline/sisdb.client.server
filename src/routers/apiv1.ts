@@ -1,5 +1,5 @@
 import Router from 'koa-router'
-import * as redisController from '../controllers/redis'
+import * as redisController from '../controllers/apiv1'
 
 const redisRouter = new Router({
   prefix: '/v1',
