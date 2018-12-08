@@ -1,13 +1,15 @@
 import Router from 'koa-router'
-import { getTest, getServersInfo } from '../controllers/redis'
+import * as redisController from '../controllers/redis'
 
 const redisRouter = new Router({
-  prefix: '/v1'
+  prefix: '/v1',
 })
 
 redisRouter
-  .get('/', getServersInfo)
-  .get('/server/info', getServersInfo)
+  .get('/', redisController.getTest)
+  .get('/server/info', redisController.getServersInfo)
+  .get('/connection/:connectionId', redisController.isConnected)
+  // .get('/key/:connectionId/:key(*)', getKeyDetails)
 
 // routerV2.get('/key/:connectionId/:key(*)', getKeyDetails);
 // routerV2.post('/key/:connectionId/:key(*)', postKey);
@@ -49,7 +51,6 @@ redisRouter
 // routerV2.get('/keystree/:connectionId', getKeysTree);
 // routerV2.get('/keys/:connectionId/:keyPrefix(*)', getKeys);
 // routerV2.post('/exec/:connectionId', postExec);
-// routerV2.get('/connection', isConnected);
 
 // routerV2.param('connectionId', getConnection);
 

@@ -1,10 +1,18 @@
-import Redis, { RedisOptions } from 'ioredis'
 import debug from 'debug'
-import config from '../config'
+import Redis, { RedisOptions } from 'ioredis'
 
 const redisDebug = debug('redis:connect')
 
-const redisConnections: Redis.Redis[] = []
+export interface LoginOptions extends RedisOptions {
+  label: string
+}
+
+export interface RedisCliet extends Redis.Redis {
+  label: string
+  options: RedisOptions
+}
+
+export const redisConnections: RedisCliet[] = []
 
 export async function connectRedis (options: RedisOptions) {
   const redis = new Redis(options)
@@ -12,7 +20,7 @@ export async function connectRedis (options: RedisOptions) {
     redis
       .on('ready', () => {
         redisDebug(
-          `redis connected on ${options.host}:${options.port}`
+          `redis connected on ${options.host}:${options.port}`,
         )
         resolve(redis)
       })
@@ -23,22 +31,16 @@ export async function connectRedis (options: RedisOptions) {
   })
 }
 
-export interface LoginOptions extends RedisOptions {
-  label: string
-}
-
-export interface RedisCliet extends Redis.Redis {
-  label: string
-}
-
 export async function login ({ label, ...redisOptions }: LoginOptions) {
   return new Promise((resolve, reject) => {
     redisDebug(`connecting... ${label}, ${JSON.stringify(redisOptions)}`)
     const client = new Redis({
       connectionName: 'redis-commander',
-      ...redisOptions
+      ...redisOptions,
     }) as RedisCliet
     client.label = label
+    client.options = redisOptions
+
     let isPushed = false
     client.on('error', function (err) {
       redisDebug('Redis error', err.stack)
@@ -53,7 +55,7 @@ export async function login ({ label, ...redisOptions }: LoginOptions) {
       redisDebug('Connection closed. Attempting to Reconnect...')
     })
     client.on('connect', function selectDatabase () {
-      let dbIndex = redisOptions.db || 0
+      const dbIndex = redisOptions.db || 0
 
       return client.select(dbIndex, function (err) {
         if (err) {
@@ -73,29 +75,17 @@ export async function logout (hostname: string, port: string | number, db: numbe
   return new Promise((resolve, reject) => {
     let notRemoved = true
     redisConnections.forEach(function (instance, index) {
-      // Todo
-      const options = (instance as any).options
+      const options = instance.options
       if (notRemoved && options.host === hostname && options.port === port && options.db === db) {
         notRemoved = false
-        let connectionToClose = redisConnections.splice(index, 1)
+        const connectionToClose = redisConnections.splice(index, 1)
         connectionToClose[0].quit()
       }
     })
     if (notRemoved) {
-      throw new Error(`Could not remove , ${hostname}, ${port}.`)
+      reject(`Could not remove , ${hostname}, ${port}.`)
     } else {
-      return
+      resolve()
     }
   })
-}
-
-export async function connectAllRedisClients () {
-  for (const option of config.redises) {
-    try {
-      const client = await connectRedis(option) as Redis.Redis
-      redisConnections.push(client)
-    } catch (error) {
-      redisDebug(error)
-    }
-  }
 }

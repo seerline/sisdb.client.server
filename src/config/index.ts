@@ -4,11 +4,11 @@ export default {
   redises: [
     {
       host: 'localhost',
-      port: 6379
+      port: 6379,
     },
     {
       host: 'localhost',
-      port: 16379
-    }
-  ]
+      port: 16379,
+    },
+  ],
 }

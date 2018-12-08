@@ -5,6 +5,6 @@ export const createUser = async () => {
     gender: 'male',
     localtion: 'china',
     website: 'https://www.micjoycetop.com',
-    picture: 'https://www.micjoycetop.com/aa.png'
+    picture: 'https://www.micjoycetop.com/aa.png',
   }
 }

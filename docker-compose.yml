@@ -8,4 +8,4 @@ services:
   redis2:
     image: redis:latest
     ports:
-      - 16379:16379
+      - 16379:6379

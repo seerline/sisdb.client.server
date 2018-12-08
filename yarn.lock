@@ -313,6 +313,11 @@
   resolved "http://registry.npm.taobao.org/@types/http-assert/download/@types/http-assert-1.3.0.tgz#5e932606153da28e1d04f9043f4912cf61fd55dd"
   integrity sha1-XpMmBhU9oo4dBPkEP0kSz2H9Vd0=
 
+"@types/inflection@^1.5.28":
+  version "1.5.28"
+  resolved "http://registry.npm.taobao.org/@types/inflection/download/@types/inflection-1.5.28.tgz#43d55e0d72cf333a2dffd9c4ec0407455a1b0931"
+  integrity sha1-Q9VeDXLPMzot/9nE7AQHRVobCTE=
+
 "@types/ioredis@^4.0.4":
   version "4.0.4"
   resolved "http://registry.npm.taobao.org/@types/ioredis/download/@types/ioredis-4.0.4.tgz#c0a809064c05e4c2663803128d46042e73c92558"
@@ -2797,6 +2802,11 @@ inflation@^2.0.0:
   version "2.0.0"
   resolved "http://registry.npm.taobao.org/inflation/download/inflation-2.0.0.tgz#8b417e47c28f925a45133d914ca1fd389107f30f"
   integrity sha1-i0F+R8KPklpFEz2RTKH9OJEH8w8=
+
+inflection@^1.12.0:
+  version "1.12.0"
+  resolved "http://registry.npm.taobao.org/inflection/download/inflection-1.12.0.tgz#a200935656d6f5f6bc4dc7502e1aecb703228416"
+  integrity sha1-ogCTVlbW9fa8TcdQLhrstwMihBY=
 
 inflight@^1.0.4:
   version "1.0.6"

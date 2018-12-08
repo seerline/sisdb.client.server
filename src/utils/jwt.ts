@@ -1,5 +1,5 @@
-import jwt from 'jsonwebtoken'
 import * as crypto from 'crypto'
+import jwt from 'jsonwebtoken'
 const usedTokens = new Set()
 
 const jwtSecret = crypto.randomBytes(20).toString('base64')
@@ -11,22 +11,22 @@ export interface TokenData {
 
 export async function jwtSign (data: TokenData) {
   return jwt.sign(data, jwtSecret, {
-    'issuer': 'Redis Commander',
-    'subject': 'Session Token',
-    'expiresIn': 60
+    issuer: 'Redis Commander',
+    subject: 'Session Token',
+    expiresIn: 60,
   })
 }
 
 export async function jwtVerify (token: string) {
   try {
     const decodedToken = await jwt.verify(token, jwtSecret, {
-      'issuer': 'Redis Commander',
-      'subject': 'Session Token'
+      issuer: 'Redis Commander',
+      subject: 'Session Token',
     }) as TokenData
 
     if (decodedToken.singleUse) {
       if (usedTokens.has(token)) {
-        console.log('Single-Usage token already used')
+        console.info('Single-Usage token already used')
         return false
       }
       usedTokens.add(token)
