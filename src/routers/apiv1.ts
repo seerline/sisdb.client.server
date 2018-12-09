@@ -9,8 +9,7 @@ redisRouter
   .get('/', redisController.getTest)
   .get('/server/info', redisController.getServersInfo)
   .get('/connection/:connectionId', redisController.isConnected)
-  // .get('/key/:connectionId/:key(*)', getKeyDetails)
-  // .get('/key/:connectionId/:key(*)', redisController.getKeyDetails)
+  .get('/key/:connectionId/:key', redisController.getKeyDetails)
   // .post('/key/:connectionId/:key(*)', redisController.postKey)
   // .post('/keys/:connectionId/:key(*)', redisController.postKeys)
   // // modify entries - newer api with post/put/del and additional POST equivalents

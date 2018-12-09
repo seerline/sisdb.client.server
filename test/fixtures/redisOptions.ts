@@ -13,5 +13,5 @@ export const redisOptions = [{
 }]
 
 export function buildConnectionId (options: RedisOptions) {
-  return `${options.host}:${options.port}:${options.db}]`
+  return `${options.host}:${options.port}:${options.db}`
 }
