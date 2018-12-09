@@ -1,5 +1,5 @@
 import Redis from 'ioredis'
-import { RedisCliet } from './utils/redis'
+import { RedisCliet } from '../services/redis'
 
 
 declare module 'koa' {

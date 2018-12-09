@@ -1,7 +1,7 @@
 import Boom from 'boom'
 import { Context, Middleware } from 'koa'
+import { login, logout, redisConnections } from '../services/redis'
 import * as myUtils from '../utils'
-import { login, logout, redisConnections } from '../utils/redis'
 
 export const exportData: Middleware = async (ctx: Context) => {
   ctx.body = { success: true, message: 'success', result: [

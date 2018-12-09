@@ -3,8 +3,8 @@ import inflection from 'inflection'
 import { RedisOptions } from 'ioredis'
 import { Context, Middleware } from 'koa'
 import * as  keyDetailService from '../services/keyDetails'
+import { RedisCliet } from '../services/redis'
 import * as myutil from '../utils'
-import { RedisCliet } from '../utils/redis'
 
 export const getTest: Middleware = async (ctx: Context) => {
   ctx.body = 'hello'
@@ -117,6 +117,6 @@ export const postExec: Middleware = async (ctx: Context) => {
       result: JSON.stringify(result),
     }
   } catch (error) {
-    throw Boom.badRequest('ERROR: Exec Command')
+    throw Boom.badRequest(error.message)
   }
 }

@@ -16,7 +16,6 @@ describe('./test/controller/api.test.ts', () => {
     // close connections
     for (const option of redisOptions) {
       const { body } = await request.get(`/api/v1/connection/${buildConnectionId(option)}`)
-        .expect(200)
       if (body === true) {
         await request.post(`/logout/${buildConnectionId(option)}`)
           .expect(200)

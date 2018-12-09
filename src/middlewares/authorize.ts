@@ -1,6 +1,6 @@
 import Boom from 'boom'
 import { Middleware } from 'koa'
-import { jwtVerify } from '../utils/jwt'
+import { jwtVerify } from '../services/jwt'
 
 export default (): Middleware => async (ctx, next) => {
   let token

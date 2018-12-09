@@ -1,5 +1,5 @@
 import { Middleware } from 'koa'
-import { redisConnections } from '../utils/redis'
+import { redisConnections } from '../services/redis'
 
 export default (): Middleware => async (ctx, next) => {
   ctx.redisConnections = redisConnections

@@ -1,5 +1,7 @@
+import Boom from 'boom'
 import debug from 'debug'
 import Redis, { RedisOptions } from 'ioredis'
+import { Context } from 'koa'
 
 const redisDebug = debug('redis:connect')
 
@@ -88,4 +90,21 @@ export async function logout (hostname: string, port: string | number, db: numbe
       resolve()
     }
   })
+}
+
+export function getClientByConnectionId(ctx: Context, connectionId: string) {
+  if (connectionId) {
+    const connectionIds = connectionId.split(':')
+    const desiredHost = connectionIds[0] || ''
+    const desiredPort = parseInt(connectionIds[1], 10)
+    const desiredDb = parseInt(connectionIds[2], 10)
+    const con = redisConnections.find(function (connection) {
+      return (connection.options.host === desiredHost && connection.options.port === desiredPort && connection.options.db === desiredDb)
+    })
+    if (con) {
+      ctx.redisClient = con
+    } else {
+      throw Boom.badRequest(`Not found connection: ${connectionId}`)
+    }
+  }
 }
