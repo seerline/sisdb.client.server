@@ -7,13 +7,8 @@ export const exportData: Middleware = async (ctx: Context) => {
     const data = await ctx.redisClient.dump(exportType)
     ctx.set('Content-disposition', 'attachment; filename=db.' + (new Date().getTime()) + '.redis')
     ctx.set('Content-Type', 'application/octet-stream')
-    switch (exportType) {
-      case 'json':
-        ctx.body = JSON.stringify(data)
-        break
-      default:
-        ctx.body = data
-        break
+    ctx.body = {
+      data,
     }
   } catch (error) {
     throw Boom.badImplementation(error.message)
